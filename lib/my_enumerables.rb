@@ -20,6 +20,30 @@ module Enumerable
     end
     new_array
   end
+
+  def my_count
+    if block_given?
+      count = 0
+      for element in self
+        if yield(element)
+          count += 1
+        end
+      end
+      return count
+    end
+    return self.length
+  end
+
+  def my_none?
+    if block_given?
+      for element in self
+        if yield(element)
+          return false
+        end
+      end
+      return true
+    end
+  end
 end
 
 # You will first have to define my_each
