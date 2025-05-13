@@ -44,6 +44,10 @@ module Enumerable
       return true
     end
   end
+
+  def my_any?(&condition)
+    return !my_none?(&condition)
+  end
 end
 
 # You will first have to define my_each
