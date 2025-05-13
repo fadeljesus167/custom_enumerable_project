@@ -3,10 +3,12 @@ module Enumerable
 
   def my_each_with_index
     if block_given?
-      for element in self
-        yield(element, self.index(element))
+      last_index = self.length - 1
+      for i in 0..last_index
+        yield(self[i], i)
       end
     end
+    return self
   end
 end
 
