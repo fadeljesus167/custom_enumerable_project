@@ -48,6 +48,39 @@ module Enumerable
   def my_any?(&condition)
     return !my_none?(&condition)
   end
+
+  def my_all?
+    for element in self
+      if !yield(element)
+        return false
+      end
+    end
+    return true
+  end
+
+  def my_select
+    if block_given?
+      select_elements = []
+      for element in self
+        if yield(element)
+          select_elements << element
+        end
+      end
+
+      select_elements
+    else
+      return self
+    end
+  end
+
+  def my_inject(initial=1)
+    result = initial
+    for element in self
+      result = yield(result, element)
+    end
+
+    return result
+  end
 end
 
 # You will first have to define my_each
