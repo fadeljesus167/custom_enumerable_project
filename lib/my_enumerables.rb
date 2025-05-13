@@ -8,7 +8,17 @@ module Enumerable
         yield(self[i], i)
       end
     end
-    return self
+    self
+  end
+
+  def my_map
+    if block_given?
+      new_array = []
+      for element in self
+        new_array << yield(element)
+      end
+    end
+    new_array
   end
 end
 
